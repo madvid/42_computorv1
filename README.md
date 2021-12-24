@@ -49,6 +49,7 @@ The output is constitued of different forms of the polynomial:
 🚧👷‍♂️ ... 👷‍♂️🚧
 ### Dealing with the arguments
 #### Parsing
+The strings 
 🚧👷‍♂️ Set of rules 👷‍♂️🚧
 
 #### Tokenizer
