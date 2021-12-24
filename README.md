@@ -49,18 +49,32 @@ The output is constitued of different forms of the polynomial:
 🚧👷‍♂️ ... 👷‍♂️🚧
 ### Dealing with the arguments
 #### Parsing
-The strings 
-🚧👷‍♂️ Set of rules 👷‍♂️🚧
+![parsing](assets/parsing_schema.png)
+The strings are passed to the parser. This function is divided into 4 sub components: check_valiity, verification of the presence of '=', the tokenizer and the veriification of the validity.
+* **check_validity**: verifies there are only ascii letters, digits and operators (character among ".+-*/=^ˆ()")
+* **tokenizer**: As the strings are only letters, digits and operators, the generation of a token is quite simple (more details are given in the next subsub section).
+* **check_validity**: list of tokens obtained is checked according to a set of rules. **First rule** check the starting and ending tokens: polynomial equation cannot start by an operator (except '+' or '-') or an closing bracket and cannot end by any operator or opening bracket. **Second rule** verifies the succession of all the token across the tokens list. Two adjacent tokens cannot be 2 operators for instance. **Third rule** checks the number of opening and closing parentheses are identical. **Fourth rule** verifies the number of different variables.
+ 
+
+For computorv1 we authorized only 1 variable. More rules can be added, we simply have to add more `encapsulated functions` in the function `check_validity`.
 
 #### Tokenizer
-🚧👷‍♂️ ... 👷‍♂️🚧
+The tokenizer consists of detecting the type of the first character, it can either be an operator (".+-*/=^ˆ()") a digit or a letter.
+* If the string starts by an operator, there is no need to loop over the following characters. The token is generated and the character is consumed.
+* If the string starts by a digit, the token is a number. It can be an integer or a float and the following characters are considered until it is not a digit or a point.
+* Finally, if the string starts by a letter, the token type will correspond to a variable. We check the following characters to allow notation of variable of made of several characters.
 #### Token sorting
 🚧👷‍♂️ Shunting Yard algo, Operator precedence, Polish inverse notation 👷‍♂️🚧
 ### Development roots calculus and display
 
 ####  Overload of the artihmetic operators
-🚧👷‍♂️ Monomial and Polynomial classes, `__add__`, `__radd__`, `__sub__`, `__rsub__` ... 👷‍♂️🚧
+To develop the polynomial expression, I define the arithmetic methods addition, substraction, multiplication, division and power for Token, MyMonomial, Polynomial and PolynomialBonus.
+Redefining arithmetical operators to describe the behavior when adding, substracting, multiplying .. 2 objects of homemade class is known as overloading operators.
+
+The different behaviors for 2 objects of type Token, MyMonomial, Polynomial or PolynomialBonus can be found in the files *tokens.py*, *polynomial.py* and *polynomial_bonus.py*.
+
 #### Solutions calculation
+
 🚧👷‍♂️ First, second and third order polynomial 👷‍♂️🚧
 #### Centering the polynomial representation
 🚧👷‍♂️ ... 👷‍♂️🚧
